@@ -79,10 +79,14 @@ WSGI_APPLICATION = 'Recipe.wsgi.app'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'recipes',
+        'CLIENT': {
+            'host': 'mongodb+srv://vs292382:UTbdYfHuXvcXd8E8@cluster0.4g3gt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+        }
     }
 }
+
 
 
 # Password validation
