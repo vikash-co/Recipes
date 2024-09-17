@@ -30,6 +30,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -70,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Recipe.wsgi.application'
+WSGI_APPLICATION = 'Recipe.wsgi.app'
 
 
 # Database
