@@ -1,9 +1,17 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, login
 from django.contrib.auth.decorators import login_required
+from pymongo import MongoClient
+from django.contrib.auth.hashers import check_password
+
+# Initialize MongoDB connection
+client = MongoClient('mongodb+srv://vs292382:UTbdYfHuXvcXd8E8@cluster0.4g3gt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+db = client['recipes']
+users_collection = db['auth_user'] 
 
 @login_required(login_url="/login")
 def recipes(request):
@@ -58,6 +66,21 @@ def login_page(request):
     if request.method == 'POST':
         username = request.POST.get('username') 
         password = request.POST.get('password')
+        user = users_collection.find_one({"username": username})
+
+        if not user:
+            messages.error(request, 'Invalid Username')
+            return redirect('/login')
+        
+        # Check the password
+        if not check_password(password, user['password']):
+            messages.error(request, 'Invalid Password')
+            return redirect('/login')
+
+        # Log in the user manually
+        user_obj = User.objects.get(username=username)
+        login(request, user_obj)
+        return redirect('/')
 
         if not User.objects.filter(username = username).exists():
             messages.error(request, 'Invalid Username')

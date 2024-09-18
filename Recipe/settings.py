@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+import sys
+sys.setrecursionlimit(1500)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,11 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY ='cy*yit=(!0k2f*-^*@88akbuc1e73h#z4!-$+6xm6u3_1l+#l$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
-
-
+# ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = []
 
 # Application definition
 
