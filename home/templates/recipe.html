@@ -50,7 +50,7 @@
           <td>{{recipe.recipe_name}}</td>
           <td>{{recipe.recipe_description}}</td>
           <td>
-            <img src="/media/r_image/" style="height : 100px; width : 100px;"></td>
+            <img src="/media/{{recipe.recipe_image}}" style="height : 100px; width : 100px;"></td>
           <td>
             <a href="/delete_recipe/{{recipe.id}}" class="btn btn-danger m-2">Delete</a>
             <a href="/update_recipe/{{recipe.id}}" class="btn btn-success">Update</a>
